@@ -45,19 +45,20 @@ public class serCom {
             Thread.sleep(3000);
         }
         int pastbytes = 0;
-        while(sPort.bytesAvailable() > pastbytes){
-            Thread.sleep(500);
-            pastbytes = sPort.bytesAvailable();
-        }
+        while(sPort.bytesAvailable() > 0){
+
 
             System.out.println("Bytes na trama: " + sPort.bytesAvailable());
 
-            byte[] readBuffer = new byte[pastbytes];
-            sPort.readBytes(readBuffer, pastbytes);
+            byte[] readBuffer = new byte[sPort.bytesAvailable()];
+            sPort.readBytes(readBuffer, readBuffer.length);
             baos.writeBytes(readBuffer);
             for (byte aReadBuffer : readBuffer) {
                 System.out.print((aReadBuffer & 0xFF) + " ");
             }
+            Thread.sleep(500);
+
+        }
 
         return baos.toByteArray();
         }

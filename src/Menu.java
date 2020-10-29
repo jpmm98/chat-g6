@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Menu {
 
     public void menu() throws Exception{
-        serCom cp = new serCom("COM4", 9600);
+        serCom cp = new serCom("COM4", 230400);
 
         Scanner scan= new Scanner(System.in);
         System.out.println("1-Receber ficheiro");
